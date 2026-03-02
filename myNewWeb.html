@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>יצירת קשר | פנייה חדשה</title>
+    <style>
+        /* בסיס נקי ופונט מודרני */
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; background-color: #f9fafb; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; box-sizing: border-box; color: #1f2937; }
+        
+        /* מיכל טופס מינימליסטי ואלגנטי */
+        .form-container { background: #ffffff; padding: 50px 40px; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); width: 100%; max-width: 480px; border: 1px solid #e5e7eb; }
+        
+        /* כותרות מעודנות */
+        h2 { text-align: center; color: #111827; margin-top: 0; margin-bottom: 8px; font-size: 24px; font-weight: 700; letter-spacing: -0.5px; }
+        p.subtitle { text-align: center; color: #6b7280; font-size: 15px; margin-bottom: 35px; margin-top: 0; font-weight: 400; }
+        
+        /* תוויות מוסתרות ויזואלית אך נגישות */
+        label { display: block; margin-bottom: 8px; color: #374151; font-weight: 500; font-size: 14px; }
+        
+        /* שדות קלט נקיים */
+        input, textarea { width: 100%; padding: 14px 16px; margin-bottom: 24px; border: 1px solid #d1d5db; border-radius: 8px; box-sizing: border-box; font-family: inherit; font-size: 15px; background-color: #fefefe; transition: all 0.2s ease-in-out; color: #1f2937; }
+        input:hover, textarea:hover { border-color: #9ca3af; }
+        
+        /* אפקט פוקוס עדין */
+        input:focus, textarea:focus { border-color: #2563eb; outline: none; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); background-color: #ffffff; }
+        
+        /* כפתור יוקרתי ונקי */
+        button { width: 100%; padding: 16px; background-color: #1f2937; color: #ffffff; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: background-color 0.2s ease-in-out; letter-spacing: 0.3px; }
+        button:hover { background-color: #111827; }
+        button:disabled { background-color: #9ca3af; cursor: not-allowed; }
+        
+        /* הודעות סטטוס מינימליסטיות */
+        #statusMessage { text-align: center; margin-top: 25px; font-size: 15px; min-height: 22px; font-weight: 500; }
+        .success-message { color: #10b981; }
+        .error-message { color: #ef4444; }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>השאירו פרטים</h2>
+        <p class="subtitle">ונחזור אליכם עד 7 ימי עסקים</p>
+        
+        <form id="contactForm">
+            <label for="phone">מספר טלפון:</label>
+            <input type="tel" id="phone" name="phone" required placeholder="לדוגמה: 050 123 4567" dir="ltr" style="text-align: right;">
+
+            <label for="message">הודעה:</label>
+            <textarea id="message" name="message" rows="6" required placeholder="כתבו את פנייתכם כאן..."></textarea>
+
+            <button type="submit" id="submitBtn">שליחת הודעה</button>
+            <div id="statusMessage"></div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault(); 
+            
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+            const statusDiv = document.getElementById('statusMessage');
+            const submitBtn = document.getElementById('submitBtn');
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'שולח...';
+            statusDiv.textContent = '';
+            statusDiv.className = '';
+
+            // ⚠️ כאן חובה להדביק את הקישור הארוך שקיבלת מהגוגל סקריפט! ⚠️
+            const googleScriptURL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID_HERE/exec';
+
+            try {
+                const response = await fetch(googleScriptURL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' }, 
+                    body: JSON.stringify({ phone: phone, message: message })
+                });
+
+                const result = await response.json();
+
+                if (result.status === "success") {
+                    statusDiv.textContent = 'ההודעה נשלחה בהצלחה!';
+                    statusDiv.className = 'success-message';
+                    document.getElementById('contactForm').reset();
+                } else {
+                    statusDiv.textContent = 'אירעה שגיאה בשליחה. נסו שוב.';
+                    statusDiv.className = 'error-message';
+                }
+            } catch (error) {
+                statusDiv.textContent = 'שגיאת תקשורת. אנא בדקו את החיבור לאינטרנט.';
+                statusDiv.className = 'error-message';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'שליחת הודעה';
+            }
+        });
+    </script>
+
+</body>
+</html>
