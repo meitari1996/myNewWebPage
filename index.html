@@ -3,35 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>יצירת קשר | פנייה חדשה</title>
+    <title>פנייה חדשה | יצירת קשר | אלגנטי ורציני</title>
     <style>
-        /* בסיס נקי ופונט מודרני */
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; background-color: #f9fafb; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; box-sizing: border-box; color: #1f2937; }
+        /* בסיס נקי ואווירה עמוקה */
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #101828; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; box-sizing: border-box; color: #ffffff; overflow-x: hidden; }
         
-        /* מיכל טופס מינימליסטי ואלגנטי */
-        .form-container { background: #ffffff; padding: 50px 40px; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); width: 100%; max-width: 480px; border: 1px solid #e5e7eb; }
+        /* רקע עדין עם טקסטורת קווים מינימליסטית */
+        body::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(#1a2232 1px, transparent 1px), linear-gradient(90deg, #1a2232 1px, transparent 1px); background-size: 50px 50px; background-position: center center; opacity: 0.3; z-index: -1; }
+
+        /* מיכל טופס מינימליסטי, יוקרתי ומחוספס קלות */
+        .form-container { position: relative; background: rgba(255, 255, 255, 0.03); padding: 60px 50px; border-radius: 20px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); width: 100%; max-width: 500px; border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
         
-        /* כותרות מעודנות */
-        h2 { text-align: center; color: #111827; margin-top: 0; margin-bottom: 8px; font-size: 24px; font-weight: 700; letter-spacing: -0.5px; }
-        p.subtitle { text-align: center; color: #6b7280; font-size: 15px; margin-bottom: 35px; margin-top: 0; font-weight: 400; }
+        /* עיטור גיאומטרי עדין בפינה */
+        .form-container::before { content: ""; position: absolute; top: -15px; left: -15px; width: 40px; height: 40px; border-top: 3px solid #c69c6d; border-left: 3px solid #c69c6d; border-radius: 8px 0 0 0; opacity: 0.8; }
+        .form-container::after { content: ""; position: absolute; bottom: -15px; right: -15px; width: 40px; height: 40px; border-bottom: 3px solid #c69c6d; border-right: 3px solid #c69c6d; border-radius: 0 0 8px 0; opacity: 0.8; }
+
+        /* כותרות מעודנות ורציניות */
+        .form-header { text-align: center; margin-bottom: 40px; position: relative; }
+        .form-header::after { content: ""; display: block; width: 60px; height: 2px; background-color: #c69c6d; margin: 15px auto 0; border-radius: 2px; }
+        h2 { color: #ffffff; margin-top: 0; margin-bottom: 8px; font-size: 28px; font-weight: 700; letter-spacing: -0.5px; }
+        p.subtitle { color: #9ca3af; font-size: 16px; margin: 0; font-weight: 400; }
         
-        /* תוויות מוסתרות ויזואלית אך נגישות */
-        label { display: block; margin-bottom: 8px; color: #374151; font-weight: 500; font-size: 14px; }
+        /* שדות קלט נקיים וכהים */
+        label { display: block; margin-bottom: 10px; color: #e5e7eb; font-weight: 600; font-size: 14px; letter-spacing: 0.5px; text-transform: uppercase; }
+        input, textarea { width: 100%; padding: 16px 18px; margin-bottom: 28px; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; box-sizing: border-box; font-family: inherit; font-size: 16px; background-color: rgba(0, 0, 0, 0.2); transition: all 0.25s ease-in-out; color: #ffffff; }
+        input:hover, textarea:hover { border-color: rgba(255, 255, 255, 0.3); background-color: rgba(0, 0, 0, 0.3); }
         
-        /* שדות קלט נקיים */
-        input, textarea { width: 100%; padding: 14px 16px; margin-bottom: 24px; border: 1px solid #d1d5db; border-radius: 8px; box-sizing: border-box; font-family: inherit; font-size: 15px; background-color: #fefefe; transition: all 0.2s ease-in-out; color: #1f2937; }
-        input:hover, textarea:hover { border-color: #9ca3af; }
-        
-        /* אפקט פוקוס עדין */
-        input:focus, textarea:focus { border-color: #2563eb; outline: none; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); background-color: #ffffff; }
+        /* אפקט פוקוס יוקרתי בגוון ברונזה/זהב עמוק */
+        input:focus, textarea:focus { border-color: #c69c6d; outline: none; box-shadow: 0 0 0 4px rgba(198, 156, 109, 0.15); background-color: rgba(0, 0, 0, 0.4); }
         
         /* כפתור יוקרתי ונקי */
-        button { width: 100%; padding: 16px; background-color: #1f2937; color: #ffffff; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: background-color 0.2s ease-in-out; letter-spacing: 0.3px; }
-        button:hover { background-color: #111827; }
-        button:disabled { background-color: #9ca3af; cursor: not-allowed; }
+        button { width: 100%; padding: 18px; background-color: #c69c6d; color: #101828; border: none; border-radius: 12px; font-size: 17px; font-weight: 700; cursor: pointer; transition: all 0.3s ease-in-out; letter-spacing: 0.5px; text-transform: uppercase; position: relative; overflow: hidden; }
+        button:hover { background-color: #d4ac81; transform: translateY(-2px); box-shadow: 0 10px 20px -5px rgba(198, 156, 109, 0.3); }
+        button:active { transform: translateY(0); box-shadow: 0 5px 10px -5px rgba(198, 156, 109, 0.2); }
+        button:disabled { background-color: #6b7280; cursor: not-allowed; transform: none; box-shadow: none; }
         
+        /* אפקט הברקה עדין על הכפתור */
+        button::after { content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent); transform: rotate(45deg); transition: all 0.6s ease; }
+        button:hover::after { left: 100%; }
+
         /* הודעות סטטוס מינימליסטיות */
-        #statusMessage { text-align: center; margin-top: 25px; font-size: 15px; min-height: 22px; font-weight: 500; }
+        #statusMessage { text-align: center; margin-top: 30px; font-size: 16px; min-height: 24px; font-weight: 600; }
         .success-message { color: #10b981; }
         .error-message { color: #ef4444; }
     </style>
@@ -39,15 +51,17 @@
 <body>
 
     <div class="form-container">
-        <h2>השאירו פרטים</h2>
-        <p class="subtitle">ונחזור אליכם עד 7 ימי עסקים</p>
+        <div class="form-header">
+            <h2>השאירו פרטים</h2>
+            <p class="subtitle">ונחזור אליכם עד 7 ימי עסקים</p>
+        </div>
         
         <form id="contactForm">
             <label for="phone">מספר טלפון:</label>
             <input type="tel" id="phone" name="phone" required placeholder="לדוגמה: 050 123 4567" dir="ltr" style="text-align: right;">
 
             <label for="message">הודעה:</label>
-            <textarea id="message" name="message" rows="6" required placeholder="כתבו את פנייתכם כאן..."></textarea>
+            <textarea id="message" name="message" rows="7" required placeholder="כתבו את פנייתכם כאן..."></textarea>
 
             <button type="submit" id="submitBtn">שליחת הודעה</button>
             <div id="statusMessage"></div>
@@ -69,7 +83,7 @@
             statusDiv.className = '';
 
             // ⚠️ כאן חובה להדביק את הקישור הארוך שקיבלת מהגוגל סקריפט! ⚠️
-            const googleScriptURL = 'https://script.google.com/macros/s/AKfycbz2eaqnZuAYL4awluyJxyIjE1A3uXrYA4yiduJOEkzI49jLwjVvShB4dANyAWMTHYIC/exec';
+            const googleScriptURL = 'https://script.google.com/macros/s/AKfycbz2eaqnZuAYL4awluyJxyIjE1A3uXrYA4yiduJOEkzI49jLwjVvShB4dANyAWMTHYIC/';
 
             try {
                 const response = await fetch(googleScriptURL, {
@@ -100,4 +114,3 @@
 
 </body>
 </html>
-
